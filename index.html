@@ -81,19 +81,19 @@
     </div>
 
     <script>
-        // Load the Facebook SDK for JavaScript
+ 
         window.fbAsyncInit = function() {
             FB.init({
-                appId      : 1939793796442692,  // Replace with your Facebook App ID
-                cookie     : true,           // Enable cookies to allow server to access the session
-                xfbml      : true,           // Parse social plugins on this webpage
-                version    : 'v17.0'         // Use this Graph API version
+                appId      : 1939793796442692,  
+                cookie     : true,         
+                xfbml      : true,           
+                version    : 'v17.0'        
             });
 
             FB.AppEvents.logPageView();
         };
 
-        // Load Facebook SDK
+ 
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
@@ -102,26 +102,23 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        // Check login state after user clicks Facebook Login Button
         function checkLoginState() {
             FB.getLoginStatus(function(response) {
                 statusChangeCallback(response);
             });
         }
 
-        // Handle the response from Facebook after login
         function statusChangeCallback(response) {
             if (response.status === 'connected') {
-                // Logged into your app and Facebook
+         
                 getFacebookData(response.authResponse.accessToken);
                 document.getElementById('login-section').innerHTML = `<h1>Welcome to PYRO.AI</h1>`;
             } else {
-                // User is not logged into your app or we are unable to tell
+      
                 document.getElementById('status').innerHTML = 'Please log into this app.';
             }
         }
 
-        // Fetch Facebook user data (public_profile and email)
         function getFacebookData(accessToken) {
             FB.api('/me', { fields: 'name,email,picture' }, function(response) {
                 document.getElementById('login-section').innerHTML =
